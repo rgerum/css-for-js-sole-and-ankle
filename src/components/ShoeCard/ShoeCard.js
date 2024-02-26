@@ -68,6 +68,7 @@ const Flag = styled.div`
   position: absolute;
   right: -4px;
   top: 12px;
+  font-size: ${14/16}rem;
 `
 
 const SaleFlag = styled(Flag)`
@@ -94,6 +95,7 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
 width: 100%;
+  border-radius: 8px;
 `;
 
 const Row = styled.div`
