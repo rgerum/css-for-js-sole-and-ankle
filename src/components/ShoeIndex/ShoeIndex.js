@@ -10,7 +10,6 @@ import ShoeSidebar from '../ShoeSidebar';
 import ShoeGrid from '../ShoeGrid';
 
 const ShoeIndex = ({ sortId, setSortId }) => {
-  //<!-- <ShoeGrid />-->
   return (
     <Wrapper>
       <MainColumn>
@@ -26,7 +25,7 @@ const ShoeIndex = ({ sortId, setSortId }) => {
           </Select>
         </Header>
         <Spacer size={34} />
-
+        <ShoeGrid />
       </MainColumn>
       <LeftColumn>
         <Breadcrumbs>
