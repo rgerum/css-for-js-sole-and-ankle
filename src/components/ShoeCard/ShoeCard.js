@@ -35,20 +35,48 @@ const ShoeCard = ({
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
+          {variant === 'on-sale' ?
+              <SaleFlag>Sale</SaleFlag> :
+              variant === 'new-release' ?
+              <NewFlag>Just Released!</NewFlag> : null
+          }
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          {
+            variant === 'on-sale' ?
+                <PriceCrossed>{formatPrice(price)}</PriceCrossed> :
+                <Price>{formatPrice(price)}</Price>
+          }
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          {variant === 'on-sale' ? <SalePrice>{formatPrice(salePrice)}</SalePrice> : null}
         </Row>
       </Wrapper>
     </Link>
   );
 };
+
+const Flag = styled.div`
+  color: ${COLORS.white};
+  font-weight: 700;
+  padding: 7px 9px 9px 11px;
+    border-radius: 2px;
+  position: absolute;
+  right: -4px;
+  top: 12px;
+`
+
+const SaleFlag = styled(Flag)`
+  background: ${COLORS.primary};
+  `
+
+const NewFlag = styled(Flag)`
+  background: ${COLORS.secondary};
+`
 
 const Link = styled.a`
   text-decoration: none;
@@ -71,12 +99,12 @@ width: 100%;
 const Row = styled.div`
   font-size: 1rem;
   display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.gray[900]};
-  margin-right: auto;
 `;
 
 const Price = styled.span``;
@@ -89,5 +117,11 @@ const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
 `;
+
+const PriceCrossed = styled.span`
+  color: ${COLORS.gray[500]};
+  text-decoration: line-through;
+`;
+
 
 export default ShoeCard;
